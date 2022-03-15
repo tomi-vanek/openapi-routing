@@ -1,0 +1,34 @@
+{
+  "name": "openapi-routing",
+  "version": "0.1.0",
+  "description": "Microservice routing specified by Open API 3 schema",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomi-vanek/openapi-routing.git"
+  },
+  "keywords": [
+    "openapi",
+    "swagger",
+    "nodejs",
+    "routing",
+    "handler"
+  ],
+  "author": "tomi vanek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomi-vanek/openapi-routing/issues"
+  },
+  "homepage": "https://github.com/tomi-vanek/openapi-routing#readme",
+  "dependencies": {
+    "yaml": "2.0.0-10"
+  },
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
+  }
+}
