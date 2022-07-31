@@ -1,6 +1,6 @@
 {
   "name": "openapi-routing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Open API 3 schema-first API / microservice routing.",
   "type": "module",
   "main": "index.js",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/tomi-vanek/openapi-routing#readme",
   "dependencies": {
-    "yaml": "2.0.0-10"
+    "yaml": "2.1.1"
   },
   "engines" : { 
     "npm" : ">=7.0.0",
