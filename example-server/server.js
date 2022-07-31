@@ -5,30 +5,27 @@ import { routerForSchema, readSchema } from "../index.js";
 const __dirname = new URL('.', import.meta.url).pathname;
 
 const port = process.env.PORT || 3333;
+const hostname = process.env.HOST || '127.0.0.1';
 const schemaFileName = process.env.SCHEMA || __dirname + 'simple-api.yaml';
 
-const title = `Starting with schema ${schemaFileName} ...`;
-console.log(`
-${new Date().toISOString()}
-${title}
-
-`);
+console.log(`Starting with schema ${schemaFileName}`);
 
 const schema = await readSchema(schemaFileName);
+const endpoints = Object.keys(schema.paths).map(x => `  - ${hostname}:${port}` + x).join('\n');
+console.log(endpoints);
+
 const apiRouter = await routerForSchema( schema, __dirname + 'handlers' );
 
 http
   .createServer( apiRouter )
-  .listen( port );
+  .listen( port, hostname, splashScreen );
 
-StartMsg();
-
-function StartMsg() {
-  const msg = `${schema.info.title} version ${schema.info.version} is listening on port ${port}`;
+function splashScreen() {
+  const msg = `${new Date().toISOString()} - ${schema.info.title} ${schema.info.version} is listening on ${hostname}:${port}`;
   const line = '~'.repeat(msg.length + 2);
   console.log(`
-    ,-${line}-.
-   (   ${msg}   )
-    \`-${line}-'
+   ,-${line}-.
+  (   ${msg}   )
+   \`-${line}-'
 `);
 }

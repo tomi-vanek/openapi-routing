@@ -75,6 +75,20 @@ paths:
         '400':
           $ref: '#/components/responses/400Error'
 
+  /stats:
+    get:
+      description: Chart with statistical view 
+      responses:
+        '200':
+          description: Successfully returned a list of artists
+          content:
+            'image/*':
+              schema:
+               type: string
+               format: binary
+        '400':
+          $ref: '#/components/responses/400Error'
+
 components:
   securitySchemes:
     BasicAuth:

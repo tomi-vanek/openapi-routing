@@ -1,11 +1,12 @@
 {
   "name": "openapi-routing",
   "version": "0.1.0",
-  "description": "Microservice routing specified by Open API 3 schema",
+  "description": "Open API 3 schema-first API / microservice routing.",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node example-server/server.js",
+    "test": "echo \"Error: no test specified.\" && exit 1"
   },
   "repository": {
     "type": "git",
