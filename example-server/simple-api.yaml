@@ -8,12 +8,7 @@ info:
     Source - https://support.smartbear.com/swaggerhub/docs/tutorials/openapi-3-tutorial.html
 
 servers:
-  - url: https://qa.example.com/v1
-    description: test environment
-  - url: https://uat.example.com/v1
-    description: final acceptance environment
-  - url: https://prod.example.com/v1
-    description: production
+  - url: /v1
 
 paths:
   /artists:
@@ -80,7 +75,7 @@ paths:
       description: Chart with statistical view 
       responses:
         '200':
-          description: Successfully returned a list of artists
+          description: Successfully returned statistics pie chart.
           content:
             'image/*':
               schema:

@@ -2,7 +2,7 @@ import * as http from "http";
 import { URL } from 'url';
 import { routerForSchema, readSchema } from "../index.js";
 
-const __dirname = new URL('.', import.meta.url).pathname;
+const __dirname = new URL('.', import.meta.url).pathname + '';
 
 const port = process.env.PORT || 3333;
 const hostname = process.env.HOST || '127.0.0.1';
@@ -14,7 +14,7 @@ const schema = await readSchema(schemaFileName);
 const endpoints = Object.keys(schema.paths).map(x => `  - ${hostname}:${port}` + x).join('\n');
 console.log(endpoints);
 
-const apiRouter = await routerForSchema( schema, __dirname + 'handlers' );
+const apiRouter = await routerForSchema( schema, __dirname, __dirname + 'handlers' );
 
 http
   .createServer( apiRouter )

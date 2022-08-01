@@ -18,7 +18,7 @@ A microservice with `openapi-routing` is made in 2 steps:
 1. Run example server with `node ./example-server/server.js`
 1. Test in browser with URL `http://localhost:3333/v1/artists/foo-bar?x=123&aaa=qwerty`
 
-## Microservice from OpenAPI schema
+## Create your own microservice from OpenAPI schema
 
 1. Create a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema)
 1. Create a directory for your new REST microservice and go to that directory
@@ -105,18 +105,57 @@ Router offers endpoints that provide "technical" meta information about the API 
 
 - `/meta/schema.yaml` - provides schema in YAML format
 - `/meta/schema.json` - provides schema in JSON format
-- `/meta/info` - basic information about the service - extracted from the schema
 - `/meta/health` - health check for simpler deployment to cloud environment
-- `/meta/routing` - routing rules
+- `/meta/info` - basic information about the service - extracted from the OpenAPI schema
+- `/meta/routing` - routing rules used for request handling
+
+## User interface
+
+Very useful fearure for a microservice is web user interface generated form the OpenAPI schema. User interface can serve as human-readable documentation, as experimenting tool for developers or as a tool for testers.
+
+Adding UI to your microservice is simple:
+1. Create directory with name `ui` in root of the microservice
+1. Download the newest release of Swagger UI from page https://github.com/swagger-api/swagger-ui/releases
+1. Unzip the code, and copy hte content of the directory `release` into the directory `ui` in your project
+1. Edit the file `/ui/index.html`:
+  - Change the schema URL to `"/meta/schema.yaml"`:
+
+    ``` JavaScript
+    const ui = SwaggerUIBundle({
+      url: "/meta/schema.yaml",
+    ```
+
+  - Optional: change the configuration of the UI application. I usually add following lines to the SwaggerUIBundle configuration object:
+
+    ``` JavaScript
+    const ui = SwaggerUIBundle({
+
+        ...
+
+        // custom configuration:
+        tryItOutEnabled: true,
+        jsonEditor: true,
+        showRequestHeaders: true,
+        defaultModelExpandDepth: 5,
+        defaultModelsExpandDepth: 5,
+        defaultModelRendering: "model",
+        displayRequestDuration: true,
+        docExpansion: "list",
+    };
+    ```
+
+  - Optional: change the look & feel of the application - select a theme from https://ostranme.github.io/swagger-ui-themes/
+  - Optional: change the logo, favicon, title in HTML, change fonts and colors with CSS, ... (the visual aesthetic is very important)
 
 ## Roadmap
 
-Ideas for enhancements in future releases of `openapi-routing`
+Ideas for enhancements in future releases of `openapi-routing`:
 
+* Configuration
+* Compatibility with Express framework
 * Plugable architecture for simple integration and for extensions --> processing cascade
-* Swagger UI
-* Code generator for initial structure of handlers and Dockerfile for simple deployment
 * Headers for secure responses
+* Code generator for initial structure of handlers and Dockerfile for simple deployment
 
 ## Credits
 

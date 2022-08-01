@@ -1,6 +1,10 @@
 # Release history
 
-## ver 0.2.0
+## ver 0.4.0
+
+* Swagger UI
+
+## ver 0.2.0 and 0.3.0
 
 * Response in any format (initial implementation supported only JSON responses)
 * Updated README documentation
