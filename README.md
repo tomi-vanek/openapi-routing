@@ -1,10 +1,10 @@
-# Schema-first microserver with Open API 3
+# Schema-first microservice with OpenAPI 3
 
-`openapi-routing` library is a minimalistic solution to create a microservice from an OpenAPI schema.
+The __openapi-routing__ library is a minimalistic solution to create a microservice from an OpenAPI schema.
 
-Open API schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules that call appropriate handling functions - the behavior/functionality of the microservice.
+OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules that call appropriate handling functions - the behavior/functionality of the microservice.
 
-The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in Node JS. This library does not need Express or any other framework, it uses just standard vanila JavaScript, and Node JS. But of course it coexists seamlesly with any framework, if the microservice uses framework's functionality.
+The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just standard vanila JavaScript, and _Node.js_. But of course it coexists seamlesly with any framework, if the microservice uses framework's functionality.
 
 A microservice with `openapi-routing` is made in 2 steps:
 
@@ -30,7 +30,7 @@ A microservice with `openapi-routing` is made in 2 steps:
 
 ## How it works
 
-The `openapi-routing` library can be used in plain Node.js http / https createServer - no need to include additional framework (i.e. Express) to run a lightweight API server.
+The `openapi-routing` library can be used in plain _Node.js_ http / https createServer - no need to include additional framework (i.e. Express) to run a lightweight API server.
 
 ### Server start
 
@@ -57,7 +57,7 @@ Example:
 - The path `/artists` has handler module `<project-root-dir>/handlers/artists.js`.
 - The path `/artists/{username}` has handler module `<project-root-dir>/handlers/artists/{username}.js` ... curly brackets are valid characters in file name ;-).
 
-Each handler module serves specific path defined in the OpenAPI schema. Handler module is a regular ES6 module (defined in JavaScript standards and supported in current Node). For each HTTP method specified in the OpenAPI schema, the handler module exports a handler function. Name of the handler function is by convention `handle<METHOD>` - i.e. `handleGet(parameters)`, `handlePost(parameters, data)`. HTTP methods are GET, POST, PUT, PATCH, DELETE, HEAD, etc.
+Each handler module serves specific path defined in the OpenAPI schema. Handler module is a regular ES6 module (defined in JavaScript standards and supported in current _Node.js_). For each HTTP method specified in the OpenAPI schema, the handler module exports a handler function. Name of the handler function is by convention `handle<METHOD>` - i.e. `handleGet(parameters)`, `handlePost(parameters, data)`. HTTP methods are GET, POST, PUT, PATCH, DELETE, HEAD, etc.
 
 Router reads parameters from URL path and from query. Parameters are merged to _parameters object_. If the request provides also data in body (in JSON format), the router reads incomming data, concatenates them (supporting multipart - data in more calls from client), and provides these parameters and data to _handler function_.
 
@@ -155,6 +155,7 @@ Ideas for enhancements in future releases of `openapi-routing`:
 * Compatibility with Express framework
 * Plugable architecture for simple integration and for extensions --> processing cascade
 * Headers for secure responses
+* Support for compressed responses
 * Code generator for initial structure of handlers and Dockerfile for simple deployment
 
 ## Credits
