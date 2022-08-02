@@ -2,6 +2,8 @@
   "name": "openapi-routing",
   "version": "0.4.1",
   "description": "Open API 3 schema-first API / microservice routing.",
+  "author": "tomi vanek",
+  "license": "MIT",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -17,10 +19,10 @@
     "swagger",
     "nodejs",
     "routing",
-    "handler"
+    "handler",
+    "microservice",
+    "api"
   ],
-  "author": "tomi vanek",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tomi-vanek/openapi-routing/issues"
   },
