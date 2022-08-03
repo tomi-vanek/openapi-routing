@@ -13,20 +13,49 @@ A microservice with `openapi-routing` is made in 2 steps:
 
 ## Quick impression
 
-1. Clone `openapi-routing` to your local machine with command `git clone https://github.com/tomi-vanek/openapi-routing.git`
-1. Load dependencies with command `npm install`
-1. Run example server with `node ./example-server/server.js`
-1. Test in browser with URL `http://localhost:3333/v1/artists/foo-bar?x=123&aaa=qwerty`
+To have an idea what the library does and how is the application logic for API server implemented, you may clone the project and use an example server that shows an API built form OpenAPI schema.
 
+1. Clone `openapi-routing` to your local machine with command 
+    ``` Shell
+    git clone https://github.com/tomi-vanek/openapi-routing.git
+    ```
+1. Load dependencies with command
+    ``` Shell
+    npm install
+    ```
+1. Run the example server with command
+    ``` Shell
+    npm start
+    ```
+1. Test in browser with following URLs:
+    ``` INI
+    http://127.0.0.1:3333/v1/artists/Wolfgang%20von%20Kempelen
+    ```
+    ``` INI
+    http://127.0.0.1:3333/v1/artists?limit=321&offset=32
+    ```
+    ``` INI
+    http://127.0.0.1:3333/v1/stats
+    ```
+    ``` INI
+    http://127.0.0.1:3333/meta/health
+    ```
+  
 ## Create your own microservice from OpenAPI schema
 
 1. Create a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema)
 1. Create a directory for your new REST microservice and go to that directory
-1. Initialize the microservice project with `npm init`. Project configuration file `package.json` is created.
+1. Initialize the microservice project and create the project configuration file `package.json` with command:
+    ``` Shell
+    npm init
+    ```
 1. Add to the `package.json` configuration file following line to switch module loading to standard EcmaScript module system: `"type": "module",`
-1. Install and load the `openapi-routing` library with command `npm i openapi-routing`
-1. Create directory for request handlers - i.e. `handlers` and the handler modules (for exploration you may copy the directory `example-server/handlers` into your project)
-1. Create API server start module `server.js` (for exploration you may take the file `example-server/server.js`)
+1. Install and load the `openapi-routing` library with command 
+    ``` Shell
+    npm install openapi-routing
+    ```
+1. Create a directory for request handlers (by default I use `handlers` name) and handler modules. If you want just try out the library, you can copy the directory `example-server/handlers` into your project.
+1. Create API server start module `server.js`. If you want just try out the library, you may take the file `example-server/server.js`.
 
 ## How it works
 

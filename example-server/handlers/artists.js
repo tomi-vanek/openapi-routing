@@ -1,7 +1,7 @@
 export async function handleGet(params) {
-  return params;
+    return params;
 }
 
 export async function handlePost(params, data) {
-  return data;
+    return data;
 }

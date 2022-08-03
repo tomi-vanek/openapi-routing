@@ -8,22 +8,23 @@ const port = process.env.PORT || 3333;
 const hostname = process.env.HOST || '127.0.0.1';
 const schemaFileName = process.env.SCHEMA || __dirname + 'simple-api.yaml';
 
-console.log(`Starting with schema ${schemaFileName}`);
+console.log(`Starting API defined by schema
+    ${schemaFileName}`);
 
 const schema = await readSchema(schemaFileName);
 const endpoints = Object.keys(schema.paths).map(x => `  - ${hostname}:${port}` + x).join('\n');
 console.log(endpoints);
 
-const apiRouter = await routerForSchema( schema, __dirname, __dirname + 'handlers' );
+const apiRouter = await routerForSchema(schema, __dirname, __dirname + 'handlers');
 
 http
-  .createServer( apiRouter )
-  .listen( port, hostname, splashScreen );
+    .createServer(apiRouter)
+    .listen(port, hostname, splashScreen);
 
 function splashScreen() {
-  const msg = `${new Date().toISOString()} - ${schema.info.title} ${schema.info.version} is listening on ${hostname}:${port}`;
-  const line = '~'.repeat(msg.length + 2);
-  console.log(`
+    const msg = `${new Date().toISOString()} - ${schema.info.title} ${schema.info.version} is listening on ${hostname}:${port}`;
+    const line = '~'.repeat(msg.length + 2);
+    console.log(`
    ,-${line}-.
   (   ${msg}   )
    \`-${line}-'

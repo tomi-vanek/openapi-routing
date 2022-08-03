@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.4
+
+* Refactoring, bug fixing
+
 ## ver 0.4.2
 
 * Extended set of supported mime types for static files

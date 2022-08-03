@@ -1,4 +1,5 @@
+// as an example just respond with incoming data
+
 export async function handleGet(params) {
-  console.log(params);
-  return params;
+    return params;
 }
