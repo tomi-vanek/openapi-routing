@@ -72,10 +72,16 @@ paths:
 
   /stats:
     get:
-      description: Chart with statistical view 
+      description: Pie chart with statistics
+      parameters:
+        - name: download
+          description: Resulting file should be downloaded in browser, not opened and rendered.
+          in: query
+          schema:
+            type: boolean
       responses:
         '200':
-          description: Successfully returned statistics pie chart.
+          description: Successfully returned the pie chart.
           content:
             'image/*':
               schema:

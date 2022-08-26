@@ -1,8 +1,8 @@
-# Schema-first microservice with OpenAPI 3
+# API-first microservice with OpenAPI 3 schema and Node-JS
 
 The __openapi-routing__ library is a minimalistic solution to create a microservice from an OpenAPI schema.
 
-OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules that call appropriate handling functions - the behavior/functionality of the microservice.
+OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. Routing library calls appropriate handling functions according the routing rules. Handler functions are the implementation of microservice behavior / functionality.
 
 The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just standard vanila JavaScript, and _Node.js_. But of course it coexists seamlesly with any framework, if the microservice uses framework's functionality.
 
@@ -112,18 +112,35 @@ export async function handlePost(params, data) {
 }
 ```
 
-Example of a handler with binary return value (string object):
+Example of a handler with binary return value that can be rendered in browser (i.e. an image):
 
 ``` JavaScript
 import {promises as fsPromises} from 'fs';
 
-const fileName = new URL('.', import.meta.url).pathname
+const fileNameWithPath = new URL('.', import.meta.url).pathname
     + '../assets/pie-chart.jpg';
 
 export async function handleGet() {
     return {
         mime: 'image/jpg',
-        data: fsPromises.readFile(fileName),
+        data: fsPromises.readFile(fileNameWithPath),
+    };
+}
+```
+
+Example of a handler with binary return value, when the browser should download it - not open it (i.e. a zip file) - in this case we provide also file name - this is a sign for the router to add header parameters to signalize that the response should be treated as file download:
+
+``` JavaScript
+import {promises as fsPromises} from 'fs';
+
+const fileNameWithPath = new URL('.', import.meta.url).pathname
+    + '../assets/pie-chart.jpg';
+
+export async function handleGet() {
+    return {
+        mime: 'image/jpg',
+        data: fsPromises.readFile(fileNameWithPath),
+        fileName: 'chart.jpeg',
     };
 }
 ```

@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.6
+
+* Support for file download
+
 ## ver 0.4.4
 
 * Refactoring, bug fixing

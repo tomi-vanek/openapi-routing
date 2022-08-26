@@ -1,11 +1,22 @@
 import {promises as fsPromises} from 'fs';
+import path from 'path';
 
-const fileName = new URL('.', import.meta.url).pathname + '../assets/pie-chart.jpg';
+const fileName = 'pie-chart.jpg';
+const fileNameWithPath = path.normalize(
+    new URL('.', import.meta.url).pathname + '../assets/' + fileName
+);
 
 // how to provide binary value in response
-export async function handleGet() {
-    return {
+export async function handleGet(params) {
+
+    const result = {
         mime: 'image/jpg',
-        data: fsPromises.readFile( fileName ),
+        data: fsPromises.readFile( fileNameWithPath ),
     };
+
+    if (params.download) {
+        result.fileName = fileName;
+    }
+
+    return result;
 }

@@ -12,7 +12,13 @@ console.log(`Starting API defined by schema
     ${schemaFileName}`);
 
 const schema = await readSchema(schemaFileName);
-const endpoints = Object.keys(schema.paths).map(x => `  - ${hostname}:${port}` + x).join('\n');
+
+const endpoints = Object.keys(schema.paths).map(x => `  - ${hostname}:${port}${x}
+${Object.keys(schema.paths[x]).map(m => `      --> ${m}${schema.paths[x][m]['description'] ? ': ' + schema.paths[x][m]['description'] : ''}`).join('\n')}`).join('\n\n');
+console.log(`
+Endpoints of ${schema.info.title} microservice:
+${endpoints}`);
+
 console.log(endpoints);
 
 const apiRouter = await routerForSchema(schema, __dirname, __dirname + 'handlers');
