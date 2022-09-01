@@ -2,7 +2,7 @@
 
 The __openapi-routing__ library is a minimalistic solution to create a microservice from an OpenAPI schema.
 
-__OpenAPI 3__ is de-facto standard for defining interfaces of REST API (micro)services.
+[OpenAPI 3](https://swagger.io/specification/) is de-facto standard for defining interfaces of REST API (micro)services.
 
 This library makes it really simple to implement a microservice "the right way" - starting from definition of microservice interface - the contract to client applications, and implementing the request handlers in directory and file structure that is determined by paths defined in the interface - in OpenAPI schema.
 
@@ -99,6 +99,8 @@ Handler modules are by convention in directory `<project-root-dir>/handlers`. Ea
 
 Example:
 
+We use the example server's [schema](./example-server/simple-api.yaml) and folder structure for request handlers
+
 - The path `/artists` has handler module `<project-root-dir>/handlers/artists.js`.
 - The path `/artists/{username}` has handler module `<project-root-dir>/handlers/artists/{username}.js` ... curly brackets are valid characters in file name ;-).
 
@@ -146,7 +148,7 @@ Binary return value is an object containing:
 
 All the necessary headers for response are set by the routing library.
 
-Example of a handler with simple return value (string object):
+Example of a [handler with simple return value](./example-server/handlers/artists.js) - a JavaScript object that will be serialized by routing library for HTTP response into JSON format:
 
 ``` JavaScript
 export async function handleGet(params) {
@@ -162,13 +164,16 @@ export async function handlePost(params, data) {
 }
 ```
 
-Example of a handler with binary return value that can be rendered in browser (i.e. an image):
+Example of a [handler with binary return value](./example-server/handlers/stats.js) that can be rendered in browser (i.e. an image):
 
 ``` JavaScript
 import {promises as fsPromises} from 'fs';
+import path from 'path';
 
-const fileNameWithPath = new URL('.', import.meta.url).pathname
-    + '../assets/pie-chart.jpg';
+const fileName = 'pie-chart.jpg';
+const fileNameWithPath = path.normalize(
+    new URL('.', import.meta.url).pathname + '../assets/' + fileName
+);
 
 export async function handleGet() {
     return {
@@ -183,14 +188,19 @@ Example of a handler with binary return value, when the browser should download 
 ``` JavaScript
 import {promises as fsPromises} from 'fs';
 
-const fileNameWithPath = new URL('.', import.meta.url).pathname
-    + '../assets/pie-chart.jpg';
+import {promises as fsPromises} from 'fs';
+import path from 'path';
+
+const fileName = 'pie-chart.jpg';
+const fileNameWithPath = path.normalize(
+    new URL('.', import.meta.url).pathname + '../assets/' + fileName
+);
 
 export async function handleGet() {
     return {
         mime: 'image/jpg',
         data: fsPromises.readFile(fileNameWithPath),
-        fileName: 'chart.jpeg',
+        fileName,
     };
 }
 ```
@@ -219,14 +229,15 @@ Adding UI to your microservice is simple:
     ``` JavaScript
     const ui = SwaggerUIBundle({
       url: "/meta/schema.yaml",
+      //...
+    });
     ```
 
   - Optional: change the configuration of the UI application. I usually add following lines to the SwaggerUIBundle configuration object:
 
     ``` JavaScript
     const ui = SwaggerUIBundle({
-
-        ...
+        //...
 
         // custom configuration:
         tryItOutEnabled: true,
@@ -237,11 +248,11 @@ Adding UI to your microservice is simple:
         defaultModelRendering: "model",
         displayRequestDuration: true,
         docExpansion: "list",
-    };
+    });
     ```
 
   - Optional: change the look & feel of the application - select a theme from https://ostranme.github.io/swagger-ui-themes/
-  - Optional: change the logo, favicon, title in HTML, change fonts and colors with CSS, ... (the visual aesthetic is very important)
+  - Optional: change the logo, favicon, title in HTML, change fonts and colors with CSS, maybe remove the title bar ... The visual aesthetic is very important - the generated UI is "face" of your API microservice for developers and testers. The time spent in this refinement is worth it.
 
 ## Roadmap
 
