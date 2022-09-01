@@ -6,7 +6,7 @@ The __openapi-routing__ library is a minimalistic solution to create a microserv
 
 This library makes it really simple to implement a microservice "the right way" - starting from definition of microservice interface - the contract to client applications, and implementing the request handlers in directory and file structure that is determined by paths defined in the interface - in OpenAPI schema.
 
-OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. Routing library calls appropriate handling functions according the routing rules. Handler functions are implementations of microservice behavior / functionality, they take request parameters and respond with resulting data. The response with headers and data is composited in the routing library.
+OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. The routing library calls appropriate handling functions according the routing rules. Handler functions are implementations of microservice behavior / functionality, they take request parameters and respond with resulting data. The response with headers and data is composited in the routing library.
 
 The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just vanila JavaScript in _Node.js_. But of course it coexists seamlesly with any framework.
 
@@ -15,7 +15,7 @@ A microservice with `openapi-routing` is made in 2 steps:
 1. Designing OpenAPI schema for REST API interface
 1. Writing handler modules and functions with names prescribed in the OpenAPI schema
 
-## Let's try out
+## Let's try it out
 
 To have an idea what the library does and how is the application logic for API server implemented, you may clone the project and use an example server that shows an API built form OpenAPI schema.
 
@@ -47,7 +47,7 @@ To have an idea what the library does and how is the application logic for API s
   
 ## Create your own REST API microservice
 
-1. Design a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema)
+1. Design a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema). Test the syntax of your schema with online [OpenAPI validator](https://apitools.dev/swagger-parser/online/).
 1. Create a directory for your new REST microservice and go to that directory
     ``` Shell
     mkdir <rest-project> && cd  <rest-project>
@@ -125,7 +125,7 @@ paths:
 
 For the 3 paths we have following directory structure for request handlers:
 
-``` Shell
+``` Text
 handlers
   +- artists
   |    +- {username}.js
@@ -148,7 +148,7 @@ Binary return value is an object containing:
 
 All the necessary headers for response are set by the routing library.
 
-Example of a [handler with simple return value](./example-server/handlers/artists.js) - a JavaScript object that will be serialized by routing library for HTTP response into JSON format:
+Example of a [handler with simple return value](./example-server/handlers/artists.js) - a JavaScript object that will be serialized by the routing library for HTTP response into JSON format:
 
 ``` JavaScript
 export async function handleGet(params) {
@@ -207,10 +207,10 @@ export async function handleGet() {
 
 ## Meta endpoints
 
-Routing library offers endpoints that provide "technical" meta information about the API that are not declared in the schema, so the microservice may be easily deployed in a cloud environment:
+The routing library offers also endpoints that provide "technical" meta information about the API. These endpoints are not declared in the schema and should make the microservice easily deployable to production environment:
 
-- `/meta/schema.yaml` - provides schema in YAML format
-- `/meta/schema.json` - provides schema in JSON format
+- `/meta/schema.yaml` - provides the API schema in YAML format
+- `/meta/schema.json` - provides the API schema in JSON format
 - `/meta/health` - health check for simpler deployment to cloud environment
 - `/meta/info` - basic information about the service - extracted from the OpenAPI schema
 - `/meta/routing` - routing rules used for request handling (for development and debugging)

@@ -1,6 +1,6 @@
 # Release history
 
-## ver 0.4.8
+## ver 0.4.9
 
 * Logs requests and response code
 * README document refinement

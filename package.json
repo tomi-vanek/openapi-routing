@@ -17,11 +17,12 @@
   "keywords": [
     "openapi",
     "swagger",
+    "rest",
+    "microservice",
+    "api",
     "nodejs",
     "routing",
-    "handler",
-    "microservice",
-    "api"
+    "handler"
   ],
   "bugs": {
     "url": "https://github.com/tomi-vanek/openapi-routing/issues"
