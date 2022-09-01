@@ -6,7 +6,7 @@ const fileNameWithPath = path.normalize(
     new URL('.', import.meta.url).pathname + '../assets/' + fileName
 );
 
-// how to provide binary value in response
+// this handler shows, how to provide binary value in response
 export async function handleGet(params) {
 
     const result = {

@@ -1,17 +1,21 @@
-# API-first microservice with OpenAPI 3 schema and Node-JS
+# API-first REST microservice with OpenAPI schema
 
 The __openapi-routing__ library is a minimalistic solution to create a microservice from an OpenAPI schema.
 
-OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. Routing library calls appropriate handling functions according the routing rules. Handler functions are the implementation of microservice behavior / functionality.
+__OpenAPI 3__ is de-facto standard for defining interfaces of REST API (micro)services.
 
-The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just standard vanila JavaScript, and _Node.js_. But of course it coexists seamlesly with any framework, if the microservice uses framework's functionality.
+This library makes it really simple to implement a microservice "the right way" - starting from definition of microservice interface - the contract to client applications, and implementing the request handlers in directory and file structure that is determined by paths defined in the interface - in OpenAPI schema.
+
+OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. Routing library calls appropriate handling functions according the routing rules. Handler functions are implementations of microservice behavior / functionality, they take request parameters and respond with resulting data. The response with headers and data is composited in the routing library.
+
+The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just vanila JavaScript in _Node.js_. But of course it coexists seamlesly with any framework.
 
 A microservice with `openapi-routing` is made in 2 steps:
 
-1. Designing OpenAPI schema for the API / microservice interface
-1. Writing handler modules and functions declared in the schema
+1. Designing OpenAPI schema for REST API interface
+1. Writing handler modules and functions with names prescribed in the OpenAPI schema
 
-## Quick impression
+## Let's try out
 
 To have an idea what the library does and how is the application logic for API server implemented, you may clone the project and use an example server that shows an API built form OpenAPI schema.
 
@@ -29,33 +33,45 @@ To have an idea what the library does and how is the application logic for API s
     ```
 1. Test in browser with following URLs:
     ``` INI
-    http://127.0.0.1:3333/v1/artists/Wolfgang%20von%20Kempelen
+    http://127.0.0.1:8080/v1/artists/Wolfgang%20von%20Kempelen
     ```
     ``` INI
-    http://127.0.0.1:3333/v1/artists?limit=321&offset=32
+    http://127.0.0.1:8080/v1/artists?limit=321&offset=32
     ```
     ``` INI
-    http://127.0.0.1:3333/v1/stats
+    http://127.0.0.1:8080/v1/stats
     ```
     ``` INI
-    http://127.0.0.1:3333/meta/health
+    http://127.0.0.1:8080/meta/health
     ```
   
-## Create your own microservice from OpenAPI schema
+## Create your own REST API microservice
 
-1. Create a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema)
+1. Design a new schema for the new REST API / microservice (for exploration purposes you may copy the `example-server/simple-api.yaml` schema)
 1. Create a directory for your new REST microservice and go to that directory
+    ``` Shell
+    mkdir <rest-project> && cd  <rest-project>
+    ```
 1. Initialize the microservice project and create the project configuration file `package.json` with command:
     ``` Shell
     npm init
     ```
-1. Add to the `package.json` configuration file following line to switch module loading to standard EcmaScript module system: `"type": "module",`
+1. Add to the `package.json` configuration file following line to switch module loading to standard EcmaScript module system:
+    ``` JSON
+    "type": "module"
+    ```
 1. Install and load the `openapi-routing` library with command 
     ``` Shell
     npm install openapi-routing
     ```
 1. Create a directory for request handlers (by default I use `handlers` name) and handler modules. If you want just try out the library, you can copy the directory `example-server/handlers` into your project.
-1. Create API server start module `server.js`. If you want just try out the library, you may take the file `example-server/server.js`.
+    ``` Shell
+    mkdir handlers
+    ```
+1. Create API server start module `server.js`. If you want just try out the library, you may take the file `example-server/server.js` and change the import line:
+    ``` JavaScript
+    import { routerForSchema, readSchema, endpointsMessage } from 'openapi-routing';
+    ```
 
 ## How it works
 
@@ -86,15 +102,49 @@ Example:
 - The path `/artists` has handler module `<project-root-dir>/handlers/artists.js`.
 - The path `/artists/{username}` has handler module `<project-root-dir>/handlers/artists/{username}.js` ... curly brackets are valid characters in file name ;-).
 
-Each handler module serves specific path defined in the OpenAPI schema. Handler module is a regular ES6 module (defined in JavaScript standards and supported in current _Node.js_). For each HTTP method specified in the OpenAPI schema, the handler module exports a handler function. Name of the handler function is by convention `handle<METHOD>` - i.e. `handleGet(parameters)`, `handlePost(parameters, data)`. HTTP methods are GET, POST, PUT, PATCH, DELETE, HEAD, etc.
+In example server we have in schema these paths:
+
+``` Yaml
+paths:
+  /artists:
+    get:
+        # ...
+    post:
+        # ...
+
+  /artists/{username}:
+    get:
+        # ...
+
+  /stats:
+    get:
+        # ...
+```
+
+For the 3 paths we have following directory structure for request handlers:
+
+``` Shell
+handlers
+  +- artists
+  |    +- {username}.js
+  +- artists.js
+  +- stats.js
+```
+
+Each handler module serves specific path defined in the OpenAPI schema. Handler module is a plain simple ES6 module (defined in JavaScript standards and supported in current _Node.js_).
+
+For each HTTP method specified in the OpenAPI schema, the handler module exports a handler function. Name of the handler function is by convention `handle<METHOD>` - i.e. `handleGet(parameters)`, `handlePost(parameters, data)`. HTTP methods are __GET, POST, PUT, PATCH, DELETE, HEAD,__ etc.
 
 Router reads parameters from URL path and from query. Parameters are merged to _parameters object_. If the request provides also data in body (in JSON format), the router reads incomming data, concatenates them (supporting multipart - data in more calls from client), and provides these parameters and data to _handler function_.
 
-Handler function is defined as `async`, so if processing is long, it does not block the server by executing handlers for concurrent requests in parallel. Handler function returns data that will be sent to client either directly in text format or and object that is going to be serialized to JSON format, or data in binary format together with the mime format definition.
+Handler function is __asynchronous__ - it is defined as `async`, so if processing is long, it does not block the server by executing handlers for concurrent requests in parallel. Handler function returns data that will be sent to client either directly in text format or and object that is going to be serialized to JSON format, or data in binary format together with the mime format definition.
 
-Binary return value is an object with 2 fields:
+Binary return value is an object containing:
 * mime --> MIME type (IANA media type), i.e. "image/png"
 * data --> buffer or stream with binary data
+* (optional) fileName --> if defined, the file is provided as download
+
+All the necessary headers for response are set by the routing library.
 
 Example of a handler with simple return value (string object):
 
@@ -128,7 +178,7 @@ export async function handleGet() {
 }
 ```
 
-Example of a handler with binary return value, when the browser should download it - not open it (i.e. a zip file) - in this case we provide also file name - this is a sign for the router to add header parameters to signalize that the response should be treated as file download:
+Example of a handler with binary return value, when the browser should download it - not open it (i.e. a zip file). In this case we provide also file name. The file name in response object is a sign for the routing library to add header parameters to signalize that the response should be treated as file download:
 
 ``` JavaScript
 import {promises as fsPromises} from 'fs';
@@ -147,13 +197,13 @@ export async function handleGet() {
 
 ## Meta endpoints
 
-Router offers endpoints that provide "technical" meta information about the API that are not declared in the schema:
+Routing library offers endpoints that provide "technical" meta information about the API that are not declared in the schema, so the microservice may be easily deployed in a cloud environment:
 
 - `/meta/schema.yaml` - provides schema in YAML format
 - `/meta/schema.json` - provides schema in JSON format
 - `/meta/health` - health check for simpler deployment to cloud environment
 - `/meta/info` - basic information about the service - extracted from the OpenAPI schema
-- `/meta/routing` - routing rules used for request handling
+- `/meta/routing` - routing rules used for request handling (for development and debugging)
 
 ## User interface
 

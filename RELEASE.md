@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.7
+
+* Logs requests and response code
+
 ## ver 0.4.6
 
 * Support for file download
