@@ -2,6 +2,10 @@
 
 ## ver 0.4.9
 
+* Execution time in logs
+
+## ver 0.4.9
+
 * Logs requests and response code
 * README document refinement
 
