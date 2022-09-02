@@ -14,6 +14,9 @@ export async function handleGet(params) {
         data: fsPromises.readFile( fileNameWithPath ),
     };
 
+    // If we add to the response also file name,
+    //   the binary data in HTTP response will be provided as download,
+    //   browser will not try to render it.
     if (params.download) {
         result.fileName = fileName;
     }
