@@ -5,7 +5,7 @@ import { routerForSchema, readSchema, endpointsMessage } from '../index.js';
 const __dirname = new URL('.', import.meta.url).pathname + '';
 
 const port = process.env.PORT || 8080;
-const hostname = process.env.HOST || '127.0.0.1';
+const hostname = process.env.HOST || 'localhost';
 const schemaFileName = process.env.SCHEMA || __dirname + 'simple-api.yaml';
 
 console.log(`Starting API defined by schema

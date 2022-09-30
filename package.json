@@ -1,6 +1,6 @@
 {
   "name": "openapi-routing",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "Open API 3 schema-first API / microservice routing.",
   "author": "tomi vanek",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "openapi",
     "swagger",
     "rest",
-    "microservice",
     "api",
+    "microservice",
     "nodejs",
     "routing",
     "handler"

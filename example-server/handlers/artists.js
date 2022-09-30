@@ -4,6 +4,9 @@ export async function handleGet(params) {
     return params;
 }
 
-export async function handlePost(params, data) {
-    return data;
+export async function handlePost(params, data, contentType) {
+    console.log(`Content type = ${contentType}`);
+    return (data && contentType && contentType.toLowerCase() === 'application/json') ?
+            JSON.parse(data) :
+            data;
 }

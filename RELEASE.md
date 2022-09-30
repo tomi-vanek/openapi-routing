@@ -1,5 +1,11 @@
 # Release history
 
+## ver 0.4.11
+
+* Body in input form without JSON parse - the handler will process the body data accordingly.
+* Added contentType parameter to post / put handler.
+* Default host changed to "localhost" - better for Docker deployments.
+
 ## ver 0.4.9
 
 * Execution time in logs

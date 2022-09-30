@@ -33,16 +33,16 @@ To have an idea what the library does and how is the application logic for API s
     ```
 1. Test in browser with following URLs:
     ``` INI
-    http://127.0.0.1:8080/v1/artists/Wolfgang%20von%20Kempelen
+    http://localhost:8080/v1/artists/Wolfgang%20von%20Kempelen
     ```
     ``` INI
-    http://127.0.0.1:8080/v1/artists?limit=321&offset=32
+    http://localhost:8080/v1/artists?limit=321&offset=32
     ```
     ``` INI
-    http://127.0.0.1:8080/v1/stats
+    http://localhost:8080/v1/stats
     ```
     ``` INI
-    http://127.0.0.1:8080/meta/health
+    http://localhost:8080/meta/health
     ```
   
 ## Create your own REST API microservice
