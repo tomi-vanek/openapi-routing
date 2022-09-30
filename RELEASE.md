@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.15
+
+* Data in POST handlar parameter are raw Buffer. For JSON data they must be parsed to JavaScript object: JSON.parse( data.toString() )
+
 ## ver 0.4.14
 
 * Path params may contain also dot(s) 
