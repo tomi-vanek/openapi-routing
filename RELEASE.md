@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.12
+
+* Fixed crashing if response was not returned. 
+
 ## ver 0.4.11
 
 * Body in input form without JSON parse - the handler will process the body data accordingly.
