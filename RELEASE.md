@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.14
+
+* Path params may contain also dot(s) 
+
 ## ver 0.4.12
 
 * Fixed crashing if response was not returned. 
