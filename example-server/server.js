@@ -1,12 +1,13 @@
 import * as http from 'http';
 import { URL } from 'url';
 import { routerForSchema, readSchema, endpointsMessage } from '../index.js';
+import path from 'path';
 
-const __dirname = new URL('.', import.meta.url).pathname + '';
+const __dirname = path.join(new URL('.', import.meta.url).pathname + '');
 
 const port = process.env.PORT || 8080;
 const hostname = process.env.HOST || 'localhost';
-const schemaFileName = process.env.SCHEMA || __dirname + 'simple-api.yaml';
+const schemaFileName = process.env.SCHEMA || path.join(__dirname, 'simple-api.yaml');
 
 console.log(`Starting API defined by schema
     ${schemaFileName}
@@ -16,7 +17,9 @@ const schema = await readSchema(schemaFileName);
 
 console.log( endpointsMessage(schema) );
 
-const apiRouter = await routerForSchema(schema, __dirname, __dirname + 'handlers');
+const rootDir = __dirname;
+const handlerDir = path.join(__dirname, 'handlers');
+const apiRouter = await routerForSchema(schema, rootDir, handlerDir);
 
 http
     .createServer(apiRouter)

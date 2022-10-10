@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.16
+
+* Fixed file paths for Windows
+
 ## ver 0.4.15
 
 * Data in POST handlar parameter are raw Buffer. For JSON data they must be parsed to JavaScript object: JSON.parse( data.toString() )
