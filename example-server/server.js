@@ -1,9 +1,9 @@
 import * as http from 'http';
-import { URL } from 'url';
-import { routerForSchema, readSchema, endpointsMessage } from '../index.js';
+import url from 'url';
 import path from 'path';
+import { routerForSchema, readSchema, endpointsMessage } from '../index.js';
 
-const __dirname = path.join(new URL('.', import.meta.url).pathname + '');
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 const port = process.env.PORT || 8080;
 const hostname = process.env.HOST || 'localhost';

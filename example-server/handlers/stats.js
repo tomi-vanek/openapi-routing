@@ -1,8 +1,10 @@
 import {promises as fsPromises} from 'fs';
+import url from 'url';
 import path from 'path';
 
 const fileName = 'pie-chart.jpg';
-const __dirname = path.join(new URL('.', import.meta.url).pathname + '');
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const fileNameWithPath = path.join(__dirname, '../assets/', fileName);
 
 // this handler shows, how to provide binary value in response
