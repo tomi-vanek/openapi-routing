@@ -1,6 +1,6 @@
 # Release history
 
-## ver 0.4.18
+## ver 0.4.19
 
 * Fixed file paths for Windows
 
