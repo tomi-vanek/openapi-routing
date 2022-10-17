@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.20 liberal CORS http header
+
+* Fixed file paths for Windows
+
 ## ver 0.4.19
 
 * Fixed file paths for Windows
