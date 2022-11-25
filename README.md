@@ -205,6 +205,28 @@ export async function handleGet() {
 }
 ```
 
+## Exceptions in handlers
+
+Default HTTP response code by an exception thrown by handler is 500 = internal server error. If the handler wants to decide about returned status code - i.e. 404 (Not found) or 400 (Bad input) - the thrown error code must contain integer value in property `status`.
+
+``` JavaScript
+    const errors = validate(parameters);
+    if (errors) {
+        const err = new Error(errors);
+        err.status = 400;
+        throw err;
+    }
+```
+
+The responses.js module provides a convenient error class with status - `ErrorWithStatus`. An example with error that determines the HTTP response status code:
+
+``` JavaScript
+    const errors = validate(parameters);
+    if (errors) {
+        throw new ErrorWithStatus(errors, 400);
+    }
+```
+
 ## Meta endpoints
 
 The routing library offers also endpoints that provide "technical" meta information about the API. These endpoints are not declared in the schema and should make the microservice easily deployable to production environment:

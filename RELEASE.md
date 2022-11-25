@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.26 HTTP response code by error
+
+* Default HTTP response code by an exception thrown by handler is 500 = internal server error. If the handler wants to decide about returned status code - i.e. 404 (Not found) or 400 (Bad input) - the thrown error code must contain integer value in property `status`.
+
 ## ver 0.4.23 liberal CORS http header
 
 * Removed restriction for directories that provide static files
