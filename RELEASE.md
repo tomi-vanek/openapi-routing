@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.23 liberal CORS http header
+
+* Removed restriction for directories that provide static files
+
 ## ver 0.4.20 liberal CORS http header
 
 * Fixed file paths for Windows
