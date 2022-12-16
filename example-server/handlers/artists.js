@@ -1,6 +1,10 @@
 // as an example, let's just respond with incoming data
 export async function handleGet(params) {
-    return params;
+    return {
+        action: 'artists',
+        timestamp: new Date().toISOString(),
+        ...params,
+    };
 }
 
 export async function handlePost(params, data, contentType) {

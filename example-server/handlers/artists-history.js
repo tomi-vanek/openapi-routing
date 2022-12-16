@@ -1,8 +1,7 @@
-// as an example just respond with incoming data
-
+// as an example, let's just respond with incoming data
 export async function handleGet(params) {
     return {
-        action: 'artists/{username}',
+        action: 'artists-history',
         timestamp: new Date().toISOString(),
         ...params,
     };

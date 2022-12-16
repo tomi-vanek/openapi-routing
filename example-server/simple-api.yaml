@@ -43,6 +43,15 @@ paths:
         '400':
           $ref: '#/components/responses/400Error'
 
+  /artists-history:
+    get:
+      description: Returns historical data for artists 
+      responses:
+        '200':
+          description: Successfully returned historical data
+        '400':
+          $ref: '#/components/responses/400Error'
+
   /artists/{username}:
     get:
       description: Obtain information about an artist from his or her unique username
