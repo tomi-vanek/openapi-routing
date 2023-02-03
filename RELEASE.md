@@ -1,6 +1,10 @@
 # Release history
 
-## ver 0.4.30 Fixed problems with URL decoding
+## ver 0.4.32 Introduced standard styleguide
+
+* Introduced standard styleguide and tool for code validation.
+
+## ver 0.4.31 Fixed problems with URL decoding
 
 * If a parameter is a malformed URI fragment or was already decoded upstream, it is provided to handler as is, without decoding.
 
