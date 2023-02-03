@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.4.28 malformed parameter does not stop processing
+
+* If a parameter is a malformed URI fragment, it is provided to handler as is, without decoding.
+
 ## ver 0.4.27 fixed routing
 
 * If routing paths shared first part of name in the last segment of path, wrong path was selected.
