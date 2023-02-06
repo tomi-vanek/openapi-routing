@@ -1,11 +1,12 @@
 {
   "name": "openapi-routing",
-  "version": "0.4.33",
+  "version": "0.5.0",
   "description": "Open API 3 schema-first API / microservice routing.",
   "author": "tomi vanek",
   "license": "MIT",
   "type": "module",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "start": "node ./example-server/server.js",
     "test": "standard",

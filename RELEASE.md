@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.5.0 Version used in production
+
+* This version is used in production project. The changes of version 0.4.x were made according feedback from application development.
+
 ## ver 0.4.32 Introduced standard styleguide
 
 * Introduced standard styleguide and tool for code validation.
