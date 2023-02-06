@@ -1,6 +1,6 @@
 {
   "name": "openapi-routing",
-  "version": "0.4.32",
+  "version": "0.4.33",
   "description": "Open API 3 schema-first API / microservice routing.",
   "author": "tomi vanek",
   "license": "MIT",
