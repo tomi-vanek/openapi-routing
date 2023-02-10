@@ -1,6 +1,6 @@
 # Release history
 
-## ver 0.5.4 Start log with path summary
+## ver 0.5.5 Start log with path summary
 
 * When a path has a summary, the log message will use this text instead of typically longer description
 
