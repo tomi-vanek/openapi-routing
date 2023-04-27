@@ -285,7 +285,6 @@ Adding UI to your microservice is simple:
 Ideas for enhancements in future releases of `openapi-routing`:
 
 * Configuration
-* Compatibility with Express framework
 * Plugable architecture for simple integration and for extensions --> processing cascade
 * Headers for secure responses
 * Support for compressed responses
