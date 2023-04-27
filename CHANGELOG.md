@@ -1,5 +1,9 @@
 # Release history
 
+## ver 0.6.0 Express framework compatibility
+
+* _OpenAPI routing_ can run as [Express](https://expressjs.com/) middleware. Example code `express-server.js` shows the usage.
+
 ## ver 0.5.7 Start log with path summary
 
 * Added header "Access-Control-Expose-Headers": "Content-Disposition" for download file name

@@ -4,16 +4,18 @@ The __openapi-routing__ library is a minimalistic solution to create a microserv
 
 [OpenAPI 3](https://swagger.io/specification/) is de-facto standard for defining interfaces of REST API (micro)services.
 
+## Single source of truth
+
 This library makes it really simple to implement a microservice "the right way" - starting from definition of microservice interface - the contract to client applications, and implementing the request handlers in directory and file structure that is determined by paths defined in the interface - in OpenAPI schema.
 
 OpenAPI schema is treated as ultimate __single source of truth__ by describing and declaring interface / contract of our microservice. From this contract are derived all the routing rules. The routing library calls appropriate handling functions according the routing rules. Handler functions are implementations of microservice behavior / functionality, they take request parameters and respond with resulting data. The response with headers and data is composited in the routing library.
 
-The `openapi-routing` library serves as a lightweight routing specified by Open API 3 in _Node.js_. This library does not need Express or any other framework, it uses just vanila JavaScript in _Node.js_. But of course it coexists seamlesly with any framework.
+The `openapi-routing` library serves as a lightweight routing specified by Open API 3 either without any framework - as _vanilla Node.js_ application, or as a middleware in _Express application_.
 
-A microservice with `openapi-routing` is made in 2 steps:
+A microservice with `openapi-routing` is written in 2 steps:
 
-1. Designing OpenAPI schema for REST API interface
-1. Writing handler modules and functions with names prescribed in the OpenAPI schema
+1. Designing the REST API interface - an OpenAPI schema
+1. Writing handler functions - modules with names defined by paths in the OpenAPI schema
 
 ## Let's try it out
 
@@ -68,10 +70,12 @@ To have an idea what the library does and how is the application logic for API s
     ``` Shell
     mkdir handlers
     ```
-1. Create API server start module `server.js`. If you want just try out the library, you may take the file `example-server/server.js` and change the import line:
-    ``` JavaScript
-    import { routerForSchema, readSchema, endpointsMessage } from 'openapi-routing';
-    ```
+1. Create API server start module `server.js`.
+    * __Node.JS:__ If you want just try out the library, you may take the file `example-server/server.js` and change the import line:
+        ``` JavaScript
+        import { routerForSchema, readSchema, endpointsMessage } from 'openapi-routing';
+        ```
+    * __Express:__ Alternative option - if you want to use express with usefull middlewares, you can take the file `example-server/express-server.js` as your starting point and make similar change as in previous step. Express library is optional dependency - it is not istalled by default. If you want to test the `express-server.js`, you have to force-install with command `npm i -f`
 
 ## How it works
 
