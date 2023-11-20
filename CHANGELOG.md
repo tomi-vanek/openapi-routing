@@ -1,5 +1,10 @@
 # Release history
 
+## ver 0.6.5 Added main declaration in package.json
+
+* Fix of deprecation warning: Added main declaration in package.json
+* Updated dependencies
+
 ## ver 0.6.3 Update to Node 20
 
 * Updated to Node 20 - removed nodemon for watching changes in files by development - node can now watch the files without nodemon (ExperimentalWarning: Watch mode is an experimental)
