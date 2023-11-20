@@ -1,4 +1,4 @@
-# API-first REST microservice with OpenAPI schema
+# API-first REST microservice from OpenAPI schema
 
 The __openapi-routing__ library is a minimalistic solution to create a microservice from an OpenAPI schema.
 

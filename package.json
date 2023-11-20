@@ -1,18 +1,18 @@
 {
   "name": "openapi-routing",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "Open API 3 schema-first API / microservice routing.",
   "author": "tomi vanek",
   "license": "MIT",
   "type": "module",
-  "main": "index.js",
   "module": "index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./example-server/server.js",
+    "start": "node --trace-warnings ./example-server/server.js",
     "test": "standard",
     "fix": "standard --fix",
-    "dev": "nodemon ./example-server/server.js",
-    "express": "nodemon ./example-server/express-server.js"
+    "dev": "node --watch --watch-preserve-output --trace-warnings ./example-server/server.js",
+    "express": "node --watch --watch-preserve-output --trace-warnings ./example-server/express-server.js"
   },
   "repository": {
     "type": "git",
@@ -37,14 +37,13 @@
     "yaml": "^2.2.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
     "standard": "^17.0.0"
   },
   "optionalDependencies": {
     "express": "^4.18.2"
   },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=9.8.0",
+    "node": ">=20.5.0"
   }
 }
