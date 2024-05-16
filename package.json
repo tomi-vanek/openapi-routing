@@ -1,6 +1,6 @@
 {
   "name": "openapi-routing",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Open API 3 schema-first API / microservice routing.",
   "author": "tomi vanek",
   "license": "MIT",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/tomi-vanek/openapi-routing#readme",
   "dependencies": {
-    "yaml": "^2.2.1"
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "standard": "^17.0.0"
