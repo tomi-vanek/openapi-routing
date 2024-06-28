@@ -1,5 +1,14 @@
 # Release history
 
+## ver 0.6.7 fixed recognition of the http method type
+
+* GET and DELETE handlers receive less parametersgit 
+
+## ver 0.6.6 parameter value starting with '0'
+
+* If parameter starts with '0' - it is not interpreted as number
+* Updated dependencies
+
 ## ver 0.6.5 Added main declaration in package.json
 
 * Fix of deprecation warning: Added main declaration in package.json
