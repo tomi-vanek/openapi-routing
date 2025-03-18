@@ -1,8 +1,14 @@
 # Release history
 
+## ver 0.7.0 security for static file provisioning
+
+* Prevent directory traversal by ensuring filePath is within rootDir
+* Check if file extension is in the allowed list
+* migrated from standard to neostandard
+
 ## ver 0.6.7 fixed recognition of the http method type
 
-* GET and DELETE handlers receive less parametersgit 
+* GET and DELETE handlers receive less parameters 
 
 ## ver 0.6.6 parameter value starting with '0'
 
